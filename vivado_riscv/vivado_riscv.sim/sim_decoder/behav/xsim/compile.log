@@ -1,0 +1,7 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Stefan/Documents/riscv/src/rv_decode.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module rv_decode
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Stefan/Documents/riscv/src/rv_decode_instr.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module rv_decode_instr
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Stefan/Documents/riscv/sim/decoder/id_tb.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module id_tb
+WARNING: [VRFC 10-2096] empty statement in sequential block [C:/Users/Stefan/Documents/riscv/sim/decoder/id_tb.v:59]

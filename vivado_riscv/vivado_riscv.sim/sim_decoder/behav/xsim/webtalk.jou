@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Webtalk v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Tue Jan 26 21:39:09 2021
+# Process ID: 12016
+# Current directory: C:/Users/Stefan/Documents/riscv/vivado_riscv/vivado_riscv.sim/sim_decoder/behav/xsim
+# Command line: wbtcv.exe -mode batch -source C:/Users/Stefan/Documents/riscv/vivado_riscv/vivado_riscv.sim/sim_decoder/behav/xsim/xsim.dir/id_tb_behav/webtalk/xsim_webtalk.tcl -notrace
+# Log file: C:/Users/Stefan/Documents/riscv/vivado_riscv/vivado_riscv.sim/sim_decoder/behav/xsim/webtalk.log
+# Journal file: C:/Users/Stefan/Documents/riscv/vivado_riscv/vivado_riscv.sim/sim_decoder/behav/xsim\webtalk.jou
+#-----------------------------------------------------------
+source C:/Users/Stefan/Documents/riscv/vivado_riscv/vivado_riscv.sim/sim_decoder/behav/xsim/xsim.dir/id_tb_behav/webtalk/xsim_webtalk.tcl -notrace

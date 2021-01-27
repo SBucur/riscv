@@ -1,0 +1,8 @@
+0.7
+2020.2
+Nov 18 2020
+09:47:47
+C:/Users/Stefan/Documents/riscv/sim/decoder/id_tb.v,1611719102,verilog,,,,id_tb,,,,,,,,
+C:/Users/Stefan/Documents/riscv/src/rv_decode.v,1611718583,verilog,,C:/Users/Stefan/Documents/riscv/src/rv_decode_instr.v,,rv_decode,,,,,,,,
+C:/Users/Stefan/Documents/riscv/src/rv_decode_instr.v,1611678538,verilog,,C:/Users/Stefan/Documents/riscv/sim/decoder/id_tb.v,,rv_decode_instr,,,,,,,,
+C:/Users/Stefan/Documents/riscv/vivado_riscv/vivado_riscv.sim/sim_decoder/behav/xsim/glbl.v,1605673889,verilog,,,,glbl,,,,,,,,

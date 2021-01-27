@@ -1,0 +1,16 @@
+Vivado Simulator 2020.2
+Time resolution is 1 ps
+##########################
+##   rv_decode BEGIN    ##
+##########################
+-------- IMM_TEST --------
+I_IMM: PASS
+R_IMM: PASS
+S_IMM: PASS
+B_IMM: PASS
+U_IMM: PASS
+J_IMM: PASS
+ILL_IMM: PASS
+-------- REG_TEST --------
+REG_RW_x4: PASS
+REG_RW_x0: PASS
