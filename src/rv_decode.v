@@ -1,12 +1,12 @@
-// --------------------------------------------------------
+//////////////////////////////////////////////////////////////////////////////////
 // RISC-V: Instruction Decode Pipeline Phase(ID)
-//
-// rv_decode contains the ID/EX pipeline registers to be
+// Author: Stefan Bucur
+// 
+// Description: rv_decode contains the ID/EX pipeline registers to be
 // carried over to the Execution phase (EX).
 // rv_decode also contains the RV32 register file.
-// * last testbench result:
-// ! regfile test fail: mem_wb_out = 32'bX
-// --------------------------------------------------------
+// * last testbench result: PASS
+//////////////////////////////////////////////////////////////////////////////////
 `timescale 1ns/1ps
 
 module rv_decode (
