@@ -1,17 +1,17 @@
 // Author: Stefan Bucur
-// Class: id_driver
-// Description: UVM Driver object for the instruction decoder testbench (id_env).
+// Class: pip_driver
+// Description: UVM Driver object for the pipeline testbench (pip_env).
 
 import uvm_pkg::*;
 `include "uvm_macros.svh"
-`include "id_seq_item.sv"
+`include "pip_seq_item.sv"
 
 `define DRIV_IF vif.DRIVER.driver_cb
 
-class id_driver extends uvm_driver#(id_seq_item);
+class pip_driver extends uvm_driver#(pip_seq_item);
     
-    virtual id_if vif;                                  // reminder: make virtual interface id_if
-    `uvm_component_utils(id_driver)
+    virtual pip_if vif;                                  // reminder: make virtual interface pip_if
+    `uvm_component_utils(pip_driver)
     
     function new(string name, uvm_component parent);
         super.new(name,parent);
@@ -19,7 +19,7 @@ class id_driver extends uvm_driver#(id_seq_item);
     
     function void build_phase(uvm_phase phase);
         super.build_phase(phase);
-        if(!uvm_config_db#(virtual id_if)::get(this,"","vif",vif))
+        if(!uvm_config_db#(virtual pip_if)::get(this,"","vif",vif))
             `uvm_fatal("NO_VIF",{"virtual interface must be set for: ",get_full_name(),".vif"});
     endfunction : build_phase
     
@@ -38,4 +38,4 @@ class id_driver extends uvm_driver#(id_seq_item);
         // finish driving logic
     endtask : drive
     
-endclass : id_driver
+endclass : pip_driver

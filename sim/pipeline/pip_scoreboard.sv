@@ -1,15 +1,15 @@
 // Author: Stefan Bucur
-// Class: id_scoreboard
-// Description: UVM Scoreboard object for the instruction decoder testbench (id_env).
+// Class: pip_scoreboard
+// Description: UVM Scoreboard object for the instruction decoder testbench (pip_env).
 
 import uvm_pkg::*;
 `include "uvm_macros.svh"
-`include "id_seq_item.sv"
+`include "pip_seq_item.sv"
 
-class id_scoreboard extends uvm_scoreboard;
-    `uvm_component_utils(id_scoreboard)
+class pip_scoreboard extends uvm_scoreboard;
+    `uvm_component_utils(pip_scoreboard)
     
-    uvm_analysis_imp#(id_seq_item,id_scoreboard) item_collected_export;
+    uvm_analysis_imp#(pip_seq_item,pip_scoreboard) item_collected_export;
     
     function new(string name, uvm_component parent);
         super.new(name,parent);
@@ -20,9 +20,9 @@ class id_scoreboard extends uvm_scoreboard;
         item_collected_export = new("item_collected_export", this);
     endfunction : build_phase
     
-    virtual function void write(id_seq_item pkt);
+    virtual function void write(pip_seq_item pkt);
         $display("scoreboard:: pkt received");
         pkt.print();
     endfunction : write
     
-endclass : id_scoreboard
+endclass : pip_scoreboard

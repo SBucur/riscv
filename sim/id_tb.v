@@ -2,8 +2,6 @@
 // Author: Stefan Bucur 
 // Module Name: id_tb
 // Description: Simple Verilog testbench for the instruction decode module rv_decode.
-// Additional Comments: Might migrate to using verilog testbenching for smaller components,
-//  only moving to UVM once the whole pipeline is made.
 //////////////////////////////////////////////////////////////////////////////////
 `timescale 1ns/1ps
 
