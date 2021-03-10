@@ -1,12 +1,5 @@
 `timescale 1ns/1ps
-
-// opcode mappings
-`define R_TYPE 7'b011_0011
-`define I_TYPE 7'b000_0011, 7'b001_0011
-`define S_TYPE 7'b010_0011
-`define B_TYPE 7'b110_0011
-`define U_TYPE 7'b011_0111, 7'b001_0111
-`define J_TYPE 7'b110_1111, 7'b110_0111
+`include "rv_def.v"
 
 module rv_decode_instr (
     input   wire [31:0] instr_i,
@@ -29,16 +22,17 @@ module rv_decode_instr (
     assign funct3   = instr_i[14:12];
     assign funct7   = instr_i[31:25];
 
+    //sign extend
     always @(*) begin
         imm_comb = 20'b0;
         case(opcode)
-            `R_TYPE:    imm_comb = 20'b0;
-            `I_TYPE:    imm_comb = {8'h0, instr_i[31:20]};
-            `S_TYPE:	imm_comb = {8'h0, instr_i[31:25], instr_i[11:7]};
-            `B_TYPE:	imm_comb = {8'h0, instr_i[31], instr_i[7], instr_i[30:25], instr_i[11:8]};
+            // `R_TYPE:    imm_comb = 20'b0;
+            `I_TYPE:    imm_comb = {8{instr_i[31]}, instr_i[31:20]};
+            `S_TYPE:	imm_comb = {8{instr_i[31]}, instr_i[31:25], instr_i[11:7]};
+            `B_TYPE:	imm_comb = {8{instr_i[31]}, instr_i[31], instr_i[7], instr_i[30:25], instr_i[11:8]};
             `U_TYPE:	imm_comb = {instr_i[31:12]};
             `J_TYPE:	imm_comb = {instr_i[31], instr_i[19:12], instr_i[20], instr_i[30:21]};
-            // default to 0, opcode is illegal
+            // default to 0, opcode is illegal/not implemented
             default:    imm_comb = 20'b0;
         endcase
     end

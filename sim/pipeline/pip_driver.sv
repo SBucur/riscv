@@ -12,7 +12,8 @@ import uvm_pkg::*;
 
 class pip_driver extends uvm_driver#(pip_seq_item);
     
-    virtual pip_if vif;                                  // reminder: make virtual interface pip_if
+    virtual pip_if vif;
+    
     `uvm_component_utils(pip_driver)
     
     function new(string name, uvm_component parent);

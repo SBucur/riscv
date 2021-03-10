@@ -21,8 +21,8 @@ module rv_decode (
     output  reg     [31:0] id_ex_rs1,
     output  reg     [31:0] id_ex_rs2,
     output  reg     [19:0] id_ex_imm,
-    output  reg     [2:0]  funct3,
-    output  reg     [6:0]  funct7
+    output  reg     [2:0]  id_ex_funct3,
+    output  reg     [6:0]  id_ex_funct7
 );
 
     // The RV32 Register File. regfile[0] must always return 32'h0
@@ -54,22 +54,22 @@ module rv_decode (
     // push decoded values to ID/EX registers
     always @ (posedge clk or negedge rst) begin
         if(!rst) begin
-            id_ex_ir <= 32'b0;
-            id_ex_pc <= 32'b0;
-            id_ex_rs1 <= 5'b0;
-            id_ex_rs2 <= 5'b0;
-            id_ex_imm <= 32'b0;
-            funct3 <= 3'b0;
-            funct7 <= 7'b0;
+            id_ex_ir    <= 32'b0;
+            id_ex_pc    <= 32'b0;
+            id_ex_rs1   <= 5'b0;
+            id_ex_rs2   <= 5'b0;
+            id_ex_imm   <= 32'b0;
+            funct3      <= 3'b0;
+            funct7      <= 7'b0;
         end
         else begin
-            id_ex_ir <= if_id_ir;
-            id_ex_pc <= if_id_pc;
-            id_ex_rs1 <= regfile[rs1_decode];
-            id_ex_rs2 <= regfile[rs2_decode];
-            id_ex_imm <= imm_decode;
-            funct3 <= funct3_decode;
-            funct7 <= funct7_decode;
+            id_ex_ir    <= if_id_ir;
+            id_ex_pc    <= if_id_pc;
+            id_ex_rs1   <= regfile[rs1_decode];
+            id_ex_rs2   <= regfile[rs2_decode];
+            id_ex_imm   <= imm_decode;
+            funct3      <= funct3_decode;
+            funct7      <= funct7_decode;
         end
     end // always
 
@@ -93,4 +93,4 @@ module rv_decode (
         end
     end // always
 
-endmodule //rv_decode
+endmodule // rv_decode

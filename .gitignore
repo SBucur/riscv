@@ -1,1 +1,5 @@
+# disabled extensions
 .log
+
+# disabled specific files
+doc/SBucur_riscv_designdoc.docx
