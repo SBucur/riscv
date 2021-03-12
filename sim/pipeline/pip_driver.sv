@@ -6,9 +6,8 @@
 
 import uvm_pkg::*;
 `include "uvm_macros.svh"
-`include "pip_seq_item.sv"
 
-`define DRIV_IF vif.DRIVER.driver_cb
+`define INTF vif.DRIVER.driver_cb
 
 class pip_driver extends uvm_driver#(pip_seq_item);
     
@@ -39,6 +38,29 @@ class pip_driver extends uvm_driver#(pip_seq_item);
     virtual protected task drive();
         req.print();
         // finish driving logic
+        // clk driving logic alrady defined in clocking block in pip_if.sv
+        case(req.opcode)
+            req.OP_TYPE.R_Type: begin
+                `INTF.rst <= 1'b1;
+                `INTF.in_instr_mem <= {
+                    {1'b0, req.funct[4], 5'b0},
+                    req.rs2,
+                    req.rs1,
+                    req.funct[3:0],
+                    req.rd,
+                    7'b011_0011
+                };
+                $display("Operation: R_Type x%d,x%d,x%d", req.rd, req.rs1, req.rs2);
+                `INTF.in_data_mem <= 32'h0;
+            end
+            default: begin
+                `INTF.rst <= 1'b1;
+                `INTF.in_instr_mem <= 32'h0;
+                `INTF.in_data_mem <= 32'h0;
+            end
+        endcase
+        $display("Instruction: %h", `INTF.in_instr_mem);
+        $display("-------------------------------------------------------");
     endtask : drive
     
 endclass : pip_driver

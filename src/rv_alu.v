@@ -45,6 +45,7 @@ module rv_alu(
         .rd_out(mux_alu_r)
     );
 
+    // I-type ALU
     rv_alu_i alu_i(
         .rs1_in(rs1_in),
         .imm_in(imm_in),

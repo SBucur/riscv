@@ -10,7 +10,7 @@ import uvm_pkg::*;
 class pip_env extends uvm_env;
     `uvm_component_utils(pip_env)
     
-    pip_agent agent;
+    pip_agent inst_agent;
 
     function new(string name, uvm_component parent);
         super.new(name, parent);
@@ -18,7 +18,7 @@ class pip_env extends uvm_env;
 
     function void build_phase(uvm_phase phase);
         super.build_phase(phase);
-        agent = pip_agent::type_id::create("agent", this);
+        inst_agent = pip_agent::type_id::create("inst_agent", this);
     endfunction : build_phase
 
 endclass : pip_env

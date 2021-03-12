@@ -12,7 +12,7 @@ module rv_alu_r(
     input unsigned [31:0] rs2_in,
     input           [2:0] funct3,
     input                 funct7_r,
-    output         [31:0] rd_out
+    output reg     [31:0] rd_out
 );
 
 
@@ -39,8 +39,6 @@ module rv_alu_r(
     // concatenate funct3,7
     assign funct        = {funct7_r, funct3};
 
-    // certain instructions require inverting a and/or b before calculating
-
     always @(*) begin
         rd_out = 32'h0;
         case (funct)
@@ -55,7 +53,7 @@ module rv_alu_r(
             OP_SRA:  rd_out = rs1_signed >>> rs2_signed[4:0];
             OP_OR:   rd_out = rs1_in | rs2_in;
             OP_AND:  rd_out = rs1_in & rs2_in;
-            // default to 0, funct/opcode is illegal/not implemented
+            // funct/opcode is illegal/not implemented
             default: rd_out = 32'h0;
         endcase
     end

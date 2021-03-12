@@ -6,7 +6,6 @@
 
 import uvm_pkg::*;
 `include "uvm_macros.svh"
-`include "pip_seq_item.sv"
 
 class pip_monitor extends uvm_monitor;
     
@@ -14,11 +13,11 @@ class pip_monitor extends uvm_monitor;
     
     virtual pip_if vif;
     uvm_analysis_port#(pip_seq_item) item_collected_port;
-    pip_seq_item trans_collected;
+    pip_seq_item rsp_received;
     
     function new (string name, uvm_component parent);
         super.new(name, parent);
-        trans_collected = new();
+        rsp_received = new();
         item_collected_port = new("item_collected_port", this);
     endfunction
     
@@ -29,7 +28,7 @@ class pip_monitor extends uvm_monitor;
     endfunction: build_phase
     
     virtual task run_phase(uvm_phase phase);
-        item_collected_port.write(trans_collected);
+        item_collected_port.write(rsp_received);
     endtask : run_phase
     
 endclass : pip_monitor

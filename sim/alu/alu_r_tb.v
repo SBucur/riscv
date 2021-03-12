@@ -46,7 +46,6 @@ module id_tb();
         seed = $random();
         rs1_in = 32'h0;
         rs2_in = 32'h0;
-        funct  = 4'h0;
         
         $display("##########################");
         $display("##    rv_alu_r BEGIN    ##");

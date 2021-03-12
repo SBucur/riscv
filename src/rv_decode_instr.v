@@ -26,12 +26,12 @@ module rv_decode_instr (
     always @(*) begin
         imm_comb = 20'b0;
         case(opcode)
-            // `R_TYPE:    imm_comb = 20'b0;
-            `I_TYPE:    imm_comb = {8{instr_i[31]}, instr_i[31:20]};
-            `S_TYPE:	imm_comb = {8{instr_i[31]}, instr_i[31:25], instr_i[11:7]};
-            `B_TYPE:	imm_comb = {8{instr_i[31]}, instr_i[31], instr_i[7], instr_i[30:25], instr_i[11:8]};
-            `U_TYPE:	imm_comb = {instr_i[31:12]};
-            `J_TYPE:	imm_comb = {instr_i[31], instr_i[19:12], instr_i[20], instr_i[30:21]};
+            `R_TYPE: imm_comb = 20'b0;
+            `I_TYPE: imm_comb = { {8{instr_i[31]}}, instr_i[31:20] };
+            `S_TYPE: imm_comb = { {8{instr_i[31]}}, instr_i[31:25], instr_i[11:7] };
+            `B_TYPE: imm_comb = { {8{instr_i[31]}}, instr_i[31], instr_i[7], instr_i[30:25], instr_i[11:8] };
+            `U_TYPE: imm_comb = { instr_i[31:12] };
+            `J_TYPE: imm_comb = { instr_i[31], instr_i[19:12], instr_i[20], instr_i[30:21] };
             // default to 0, opcode is illegal/not implemented
             default:    imm_comb = 20'b0;
         endcase

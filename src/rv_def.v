@@ -1,4 +1,5 @@
 // opcode mappings
+`define XLEN 32
 `define R_TYPE 7'b011_0011
 `define I_TYPE 7'b000_0011, 7'b001_0011
 `define S_TYPE 7'b010_0011

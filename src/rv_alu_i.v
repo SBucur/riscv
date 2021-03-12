@@ -18,7 +18,6 @@ module rv_alu_i(
 
     // parameter format is based off of the following concatenation:
     // {funct7[5], funct3}
-    // ! Load/Store not implemented here, see rv_alu_ls.v
     localparam OP_ADDI  = 4'b0_000;
     localparam OP_SLLI  = 4'b0_001;
     localparam OP_SLTI  = 4'b0_010;
@@ -39,8 +38,7 @@ module rv_alu_i(
     // concatenate funct3,7
     assign funct        = {funct7_r, funct3};
 
-    // certain instructions require inverting a and/or b before calculating
-
+    // ! re-examine ALU to add load/store intructions, see https://passlab.github.io/CSE564/notes/lecture08_RISCV_Impl.pdf page 40/41
     always @(*) begin
         rd_out = 32'h0;
         case (funct)
@@ -54,7 +52,7 @@ module rv_alu_i(
             OP_SRAI:  rd_out = rs1_signed >>> imm_signed[4:0];
             OP_ORI:   rd_out = rs1_in | imm_in;
             OP_ANDI:  rd_out = rs1_in & imm_in;
-            // default to 0, funct/opcode is illegal/not implemented
+            // funct/opcode is illegal/not implemented
             default: rd_out = 32'h0;
         endcase
     end

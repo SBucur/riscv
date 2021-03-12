@@ -54,22 +54,22 @@ module rv_decode (
     // push decoded values to ID/EX registers
     always @ (posedge clk or negedge rst) begin
         if(!rst) begin
-            id_ex_ir    <= 32'b0;
-            id_ex_pc    <= 32'b0;
-            id_ex_rs1   <= 5'b0;
-            id_ex_rs2   <= 5'b0;
-            id_ex_imm   <= 32'b0;
-            funct3      <= 3'b0;
-            funct7      <= 7'b0;
+            id_ex_ir        <= 32'b0;
+            id_ex_pc        <= 32'b0;
+            id_ex_rs1       <= 5'b0;
+            id_ex_rs2       <= 5'b0;
+            id_ex_imm       <= 32'b0;
+            id_ex_funct3    <= 3'b0;
+            id_ex_funct7    <= 7'b0;
         end
         else begin
-            id_ex_ir    <= if_id_ir;
-            id_ex_pc    <= if_id_pc;
-            id_ex_rs1   <= regfile[rs1_decode];
-            id_ex_rs2   <= regfile[rs2_decode];
-            id_ex_imm   <= imm_decode;
-            funct3      <= funct3_decode;
-            funct7      <= funct7_decode;
+            id_ex_ir        <= if_id_ir;
+            id_ex_pc        <= if_id_pc;
+            id_ex_rs1       <= regfile[rs1_decode];
+            id_ex_rs2       <= regfile[rs2_decode];
+            id_ex_imm       <= imm_decode;
+            id_ex_funct3    <= funct3_decode;
+            id_ex_funct7    <= funct7_decode;
         end
     end // always
 

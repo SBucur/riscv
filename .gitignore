@@ -1,5 +1,10 @@
 # disabled extensions
-.log
+*.log
+!*.xpr
+# Vivado-specific directories that are auto-generated when running simulation/elaboration/sysnthesis
+**/xsim/**
+**/vivado_riscv/**
 
 # disabled specific files
 doc/SBucur_riscv_designdoc.docx
+*_testtb.sv

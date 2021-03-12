@@ -11,9 +11,9 @@ class pip_agent extends uvm_agent;
     `uvm_component_utils(pip_agent)
     
     // UVM agent components
-    pip_driver       driver;
-    pip_sequencer    sequencer;
-    pip_monitor      monitor;
+    pip_driver       inst_driver;
+    pip_sequencer    inst_sequencer;
+    pip_monitor      inst_monitor;
     
     function new(string name, uvm_component parent);
         super.new(name,parent);
@@ -21,19 +21,22 @@ class pip_agent extends uvm_agent;
 
     function void build_phase(uvm_phase phase);
         super.build_phase(phase);
-        
         // only initialize driver+sequencer if agent is in Active mode
         if(get_is_active() == UVM_ACTIVE) begin
-            driver = pip_driver::type_id::create("driver",this);
-            sequencer = pip_sequencer::type_id::create("sequencer",this);
+            inst_driver = pip_driver::type_id::create("inst_driver",this);
+            inst_driver.build_phase(phase);
+            inst_sequencer = pip_sequencer::type_id::create("inst_sequencer",this);
+            inst_sequencer.build_phase(phase);
         end
         
-        monitor = pip_monitor::type_id::create("monitor",this);
+        inst_monitor = pip_monitor::type_id::create("inst_monitor",this);
+        inst_monitor.build_phase(phase);
     endfunction : build_phase
     
     function void connect_phase(uvm_phase phase);
         if(get_is_active == UVM_ACTIVE) begin
-            driver.seq_item_port.connect(sequencer.seq_item_export);
+            inst_driver.seq_item_port.connect(inst_sequencer.seq_item_port);
+            p_driver.res_port.connect(inst_sequencer.res_port);
         end
     endfunction : connect_phase
 endclass : pip_agent

@@ -20,7 +20,6 @@ interface pip_if(input clk, rst);
     modport driver (
     input   in_instr_mem,
             in_data_mem,
-            clk,
             rst,
     output  out_pc,
             out_alu,
@@ -32,7 +31,6 @@ interface pip_if(input clk, rst);
     modport monitor (
     input   in_instr_mem,
             in_data_mem,
-            clk,
             rst,
             out_pc,
             out_alu,
@@ -40,10 +38,9 @@ interface pip_if(input clk, rst);
             out_data_mem
     );
     
-    // ? input/output skew values arbitrary, look into learning more
+    // * input/output skew values default, look into nailing down specific values
     // tb clocking inputs are DUT outputs + vice versa
     clocking cb @(posedge clk);
-        default input #1 output #1;
         output   in_instr_mem,
                 in_data_mem;
         output negedge rst;

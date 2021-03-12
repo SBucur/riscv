@@ -12,5 +12,5 @@ class pip_sequencer extends uvm_sequencer;
 
     function new(string name = "pip_sequencer", uvm_component parent);
         super.new(name, parent);
-    endfunction //new()
+    endfunction : new
 endclass : pip_sequencer

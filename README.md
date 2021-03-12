@@ -1,5 +1,5 @@
-# RISC-V
-Pipelined RISC-V core made as a learning exercise in Verilog, SystemVerilog and UVM. Targeted for FPGAs; no specific platform required. Vivado was chosen for its free and easy UVM support. Until 3rd-party IP is required, the design is for all intents and purposes platform-agnostic.
+# RISC-V (WIP)
+Pipelined RISC-V core made as a learning exercise in Verilog, SystemVerilog and UVM. Targeted for FPGAs; no specific platform required. The Vivado IDE was chosen for its free and easy UVM support. Until 3rd-party IP is required, the design is for all intents and purposes platform-agnostic.
 The design is based off of Figure C.18+C.19 in *Computer Architecture - A Quantitative Approach, 6th ed.*
 
 ## File Structure
