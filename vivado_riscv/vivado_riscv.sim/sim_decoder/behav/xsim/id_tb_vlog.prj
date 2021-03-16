@@ -1,8 +1,9 @@
 # compile verilog/system verilog design source files
-verilog xil_defaultlib  \
-"../../../../../src/rv_decode.v" \
+verilog xil_defaultlib  --include "../../../../vivado_riscv.srcs/sim_pipeline/imports/riscv/src" --include "../../../../vivado_riscv.srcs/sim_execute/imports/riscv/src" \
 "../../../../../src/rv_decode_instr.v" \
-"../../../../../sim/decoder/id_tb.v" \
+"../../../../../src/rv_decode.v" \
+"../../../../../src/rv_def.v" \
+"../../../../../sim/id_tb.v" \
 
 # compile glbl module
 verilog xil_defaultlib "glbl.v"

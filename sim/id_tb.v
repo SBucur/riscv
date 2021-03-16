@@ -30,7 +30,7 @@ module id_tb();
     wire [31:0] id_ex_pc;
     wire [31:0] id_ex_rs1;
     wire [31:0] id_ex_rs2;
-    wire [19:0] id_ex_imm;
+    wire [31:0] id_ex_imm;
 
     rv_decode DUT(
         .clk(clk),
@@ -85,8 +85,11 @@ module id_tb();
         `OPCODE     = 7'b000_0011;                              // set opcode for specific type
         `IMM_I      = 12'hfff;                                  // imm field = all 1's
         @(posedge clk);                                         // flip-flop write
-        #1 if(id_ex_imm == 20'hfff) $display("I_IMM: PASS");    // sign-extended imm
-        else $display("I_IMM: FAIL");
+        #1 if(id_ex_imm == 32'hffff_ffff) $display("I_IMM: PASS");    // sign-extended imm
+        else  begin
+            $display("I_IMM: FAIL");
+            $display("IMM: %h", id_ex_imm);
+        end
         `IR_RST;                                                // clear IR
 
         //R-type
@@ -94,8 +97,11 @@ module id_tb();
         `OPCODE     = 7'b011_0011;
         `IMM_R      = 25'b1_1111_1111_1111_1111_1111_1111;
         @(posedge clk);
-        #1 if(id_ex_imm == 20'h0) $display("R_IMM: PASS");
-        else $display("R_IMM: FAIL");
+        #1 if(id_ex_imm == 32'h0) $display("R_IMM: PASS");
+        else  begin
+            $display("R_IMM: FAIL");
+            $display("IMM: %h", id_ex_imm);
+        end
         `IR_RST;
         
         //S-type
@@ -103,8 +109,11 @@ module id_tb();
         `OPCODE     = 7'b010_0011;
         `IMM_S      = 12'hfff;
         @(posedge clk);
-        #1 if(id_ex_imm == 20'hfff) $display("S_IMM: PASS");
-        else $display("S_IMM: FAIL");
+        #1 if(id_ex_imm == 32'hffff_ffff) $display("S_IMM: PASS");
+        else  begin
+            $display("S_IMM: FAIL");
+            $display("IMM: %h", id_ex_imm);
+        end
         `IR_RST;
         
         //B-type
@@ -112,26 +121,35 @@ module id_tb();
         `OPCODE     = 7'b110_0011;
         `IMM_B      = 12'hfff;
         @(posedge clk);
-        #1 if(id_ex_imm == 20'hfff) $display("B_IMM: PASS");
-        else $display("B_IMM: FAIL");
+        #1 if(id_ex_imm == 32'hffff_ffff) $display("B_IMM: PASS");
+        else  begin
+            $display("B_IMM: FAIL");
+            $display("IMM: %h", id_ex_imm);
+        end
         `IR_RST;
         
         //U-type
         if_id_pc = if_id_pc + 4;
         `OPCODE     = 7'b011_0111;
-        `IMM_U      = 20'hfffff;
+        `IMM_U      = 20'hf_ffff;
         @(posedge clk);
-        #1 if(id_ex_imm == 20'hfffff) $display("U_IMM: PASS");
-        else $display("U_IMM: FAIL");
+        #1 if(id_ex_imm == 32'hffff_ffff) $display("U_IMM: PASS");
+        else  begin
+            $display("U_IMM: FAIL");
+            $display("IMM: %h", id_ex_imm);
+        end
         `IR_RST;
         
         //J-type
         if_id_pc = if_id_pc + 4;
         `OPCODE     = 7'b110_1111;
-        `IMM_U      = 20'hfffff;
+        `IMM_J      = 20'hf_ffff;
         @(posedge clk);
-        #1 if(id_ex_imm == 20'hfffff) $display("J_IMM: PASS");
-        else $display("J_IMM: FAIL");
+        #1 if(id_ex_imm == 32'hffff_ffff) $display("J_IMM: PASS");
+        else  begin
+            $display("J_IMM: FAIL");
+            $display("IMM: %h", id_ex_imm);
+        end
         `IR_RST;
         
         //illegal
@@ -139,8 +157,11 @@ module id_tb();
         `OPCODE     = 7'b100_1100;
         `IMM_U      = 20'hfffff;
         @(posedge clk);
-        #1 if(id_ex_imm != 20'hfffff) $display("ILL_IMM: PASS");
-        else $display("ILL_IMM: FAIL");
+        #1 if(id_ex_imm != 32'hffff_ffff) $display("ILL_IMM: PASS");
+        else  begin
+            $display("ILL_IMM: FAIL");
+            $display("IMM: %h", id_ex_imm);
+        end
         `IR_RST;
 
         //////////////////////////////////////////////////////

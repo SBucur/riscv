@@ -5,7 +5,7 @@
 // Description: rv_decode contains the ID/EX pipeline registers to be
 // carried over to the Execution phase (EX).
 // rv_decode also contains the RV32 register file.
-// * last testbench result: PASS
+// ! last testbench result: FAIL
 //////////////////////////////////////////////////////////////////////////////////
 `timescale 1ns/1ps
 
@@ -20,7 +20,7 @@ module rv_decode (
     output  reg     [31:0] id_ex_pc,
     output  reg     [31:0] id_ex_rs1,
     output  reg     [31:0] id_ex_rs2,
-    output  reg     [19:0] id_ex_imm,
+    output  reg     [31:0] id_ex_imm,
     output  reg     [2:0]  id_ex_funct3,
     output  reg     [6:0]  id_ex_funct7
 );
@@ -32,7 +32,7 @@ module rv_decode (
     wire [6:0] mem_wb_rd = mem_wb_ir[11:7];
 
     // outputs for rv_decode_instr
-    wire [19:0] imm_decode;
+    wire [31:0] imm_decode;
     wire [6:0]  op_decode;
     wire [6:0]  rd_decode;
     wire [4:0]  rs1_decode;

@@ -4,7 +4,7 @@
 module rv_decode_instr (
     input   wire [31:0] instr_i,
     output  wire [6:0]  opcode,
-    output  wire [19:0] imm,
+    output  wire [31:0] imm,
     output  wire [6:0]  rd,
     output  wire [4:0]  rs1,
     output  wire [4:0]  rs2,
@@ -12,7 +12,7 @@ module rv_decode_instr (
     output  wire [6:0]  funct7
 );
     
-    reg [19:0] imm_comb;
+    reg [31:0] imm_comb;
     
     assign opcode   = instr_i[6:0];
     assign imm      = imm_comb;
@@ -24,16 +24,17 @@ module rv_decode_instr (
 
     //sign extend
     always @(*) begin
-        imm_comb = 20'b0;
+        imm_comb = 32'b0;
         case(opcode)
-            `R_TYPE: imm_comb = 20'b0;
-            `I_TYPE: imm_comb = { {8{instr_i[31]}}, instr_i[31:20] };
-            `S_TYPE: imm_comb = { {8{instr_i[31]}}, instr_i[31:25], instr_i[11:7] };
-            `B_TYPE: imm_comb = { {8{instr_i[31]}}, instr_i[31], instr_i[7], instr_i[30:25], instr_i[11:8] };
-            `U_TYPE: imm_comb = { instr_i[31:12] };
-            `J_TYPE: imm_comb = { instr_i[31], instr_i[19:12], instr_i[20], instr_i[30:21] };
+            `R_TYPE: imm_comb = 32'b0;
+            `I_TYPE: imm_comb = { {20{instr_i[31]}}, instr_i[31:20] };
+            `S_TYPE: imm_comb = { {20{instr_i[31]}}, instr_i[31:25], instr_i[11:7] };
+            `B_TYPE: imm_comb = { {20{instr_i[31]}}, instr_i[31], instr_i[7], instr_i[30:25], instr_i[11:8] };
+            `U_TYPE: imm_comb = { {12{instr_i[31]}}, instr_i[31:12] };
+            // ? J-Type encoding spec is out-of-order for some reason, figure out in EX stage
+            `J_TYPE: imm_comb = { {12{instr_i[31]}}, instr_i[31], instr_i[19:12], instr_i[20], instr_i[30:21] };
             // default to 0, opcode is illegal/not implemented
-            default:    imm_comb = 20'b0;
+            default:    imm_comb = 32'b0;
         endcase
     end
 endmodule // rv_decode_instr

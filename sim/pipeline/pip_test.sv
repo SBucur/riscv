@@ -9,10 +9,10 @@ import uvm_pkg::*;
 
 class pip_test extends uvm_test;
 
-    `uvm_component_utils(pip_test)
-
     pip_env inst_env;
     pip_seq inst_sequence;
+
+    `uvm_component_utils(pip_test)
 
     function new(string name="pip_test", uvm_component parent=null);
         super.new(name, parent);
